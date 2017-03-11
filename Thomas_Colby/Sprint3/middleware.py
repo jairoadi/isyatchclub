@@ -15,8 +15,8 @@ def Last5ProductsMiddleware(get_response):
         response = get_response(request)
 
         # Code to be executed for each request/response after the view is called.
-
         request.session['last5'] = request.last5[:5]
+        
         print('>>> END Middleware Function')
         return response
 

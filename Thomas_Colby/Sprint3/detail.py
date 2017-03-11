@@ -13,9 +13,14 @@ def process_request(request):
     except cmod.Product.DoesNotExist:
         return HttpResponseRedirect('/catalog/index')
 
+    # check if product is already in the list
+    if product.id in request.last5:
+        takeOut = last5.index(product.id)
+        del last5[takeOut]
+
     # add to the last 5 viewed items
     request.last5.insert(0, product.id)
-    
+
     return dmp_render(request, 'detail.html'){
 
     })
